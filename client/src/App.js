@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import { Routes  } from 'react-router-dom';
-
 import Home from './MyComponents/Home';
 import AddEdit from './MyComponents/AddEdit';
 import View from './MyComponents/View';
