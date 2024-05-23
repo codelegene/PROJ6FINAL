@@ -16,6 +16,31 @@ const db=mysql.createPool({
     password:"PASSWORDHERE",
     database:"contact_db_react",
 });
+//VIEW API
+app.get("/view",(req,res)=>{
+
+    const sqlSelect="Select * from contact_tb";
+    db.query(sqlSelect,(error,result)=>{
+        if(error)
+        {
+            console.log("error:",error);
+        }
+        res.send(result); 
+    });
+});
+//INSERT API
+app.post("/post",(req,res)=>{
+    const {Name,Email,contact}=req.body;
+    // console.log(req.body)
+    const sqlInsert="INSERT INTO contact_tb (Name,Email,contact) VALUES (?,?,?)";
+    db.query(sqlInsert,[Name,Email,contact],(error,result)=>{
+        if(error){
+            console.log(error);
+        }
+    })
+})
+
+
 
 
 app.listen(5000,()=>{
