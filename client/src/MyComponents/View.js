@@ -17,10 +17,34 @@ const initialState={
 };
 
 const View = () => {
-   
+    
+  const [state,setState]=useState({initialState});
+  const {Name,Email,contact}=state;
+    
+  const {id}=useParams();
+  useEffect(()=>{
+    axios.get(`http://localhost:5000/get/${id}`)
+    .then((response)=>setState({...response.data[0]}));
+
+  },[id]);
+
     return (
         <>
-      
+        <div style={{marginTop:"70px"}}>
+
+        <div className='img'>
+        </div>
+            <div className="card" > 
+                <div className="container"> 
+                    <h4 ><b>Name:</b>{state.Name}</h4>
+                    <h4 ><b>Email:</b>{state.Email}</h4>
+                    <h4 ><b>Contact:</b>{state.contact}</h4>
+                     
+                </div>
+               
+            </div>
+ 
+        </div>
         </>
 
     )
