@@ -39,7 +39,46 @@ app.post("/post",(req,res)=>{
         }
     })
 })
+//DELETE API
+app.delete("/delete/:id",(req,res)=>{
+    console.log("API call delete");
 
+    const {id}=req.params;
+    console.log("ID2:",id);
+    const sqlDelete="Delete FROM contact_tb WHERE ID = ?";
+    db.query(sqlDelete,id,(error,result)=>{
+        if(error){
+            console.log(error);
+        }
+    });
+});
+//UPDATE API
+app.get("/get/:id",(req,res)=>{
+
+    const {id}=req.params;
+    const sqlSelect="SELECT * FROM contact_tb WHERE ID=?";
+    db.query(sqlSelect,id,(error,result)=>{
+        if(error)
+        {
+            console.log("Get Error:",error);
+        }
+        res.send(result); 
+    });
+});
+app.put("/put/:id",(req,res)=>{
+
+    const {id}=req.params;
+    const {Name,Email,contact}=req.body;
+    const sqlUpdate="UPDATE contact_tb SET Name = ? , Email = ? , contact = ? WHERE ID=?";
+    db.query(sqlUpdate,[Name,Email,contact,id],(error,result)=>{
+        if(error)
+        {
+            console.log("Updation Error:",error);
+        }
+        res.send(result); 
+    });
+});
+//
 
 
 
