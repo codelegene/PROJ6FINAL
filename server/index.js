@@ -1,5 +1,5 @@
 const express=require("express");
-const app=express();//initializing  our app
+const app=express();
 const bodyParser=require("body-parser");
 const cors=require("cors");
 const mysql=require("mysql2");
@@ -16,6 +16,7 @@ const db=mysql.createPool({
     password:"PASSWORDHERE",
     database:"contact_db_react",
 });
+
 //VIEW API
 app.get("/view",(req,res)=>{
 
@@ -78,9 +79,6 @@ app.put("/put/:id",(req,res)=>{
         res.send(result); 
     });
 });
-//
-
-
 
 app.listen(5000,()=>{
     console.log("Server Port:5000");
